@@ -1,0 +1,30 @@
+{
+  "name": "npm-prometheus",
+  "version": "0.0.1",
+  "description": "A prom-client wrapper to simplify prometheus setup on micro services",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha *.test.js **/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abhiche/prom-js.git"
+  },
+  "keywords": [
+    "prometheus",
+    "metrics"
+  ],
+  "author": "Abhilash Chelankara - abhiche",
+  "license": "ISC",
+  "dependencies": {
+    "prom-client": "^10.0.2",
+    "response-time": "^2.3.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "chai": "^4.1.0",
+    "express": "^4.15.3",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  }
+}
