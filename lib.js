@@ -10,6 +10,9 @@ module.exports = (app) => {
   const gauge = new promClient.Gauge({ name: 'ms_api_latency', help: 'Response time metrics', labelNames: [ 'method', 'status', 'url' ] });
   const counter = new promClient.Counter({ name: 'ms_api_total_requests', help: 'Total requests received', labelNames: [ 'method', 'status', 'url' ] });
 
+  //Collect default metrics
+  promClient.collectDefaultMetrics();
+
   // Setup middleware to evaluate latency and api hits
   app.use((req, res, next) => {
 
