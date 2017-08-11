@@ -1,5 +1,6 @@
 const responseTime = require('response-time');
 const promClient = require('prom-client');
+const helper = require('./helper');
 
 module.exports = (app) => {
 
@@ -16,13 +17,15 @@ module.exports = (app) => {
   // Setup middleware to evaluate latency and api hits
   app.use((req, res, next) => {
 
+    let url = helper.stripSensitiveData(req.originalUrl);
+
     // Do not store metics of /metrics API
-    if (req.originalUrl === '/metrics') {
+    if (url === '/metrics') {
       return next();
     }
     res.on('finish', () => {
-      gauge.set({ method: req.method, status: res.statusCode, url: req.originalUrl }, res.get('X-Response-Time').split('ms')[0]);
-      counter.inc({ method: req.method, status: res.statusCode, url: req.originalUrl });
+      gauge.set({ method: req.method, status: res.statusCode, url: url }, res.get('X-Response-Time').split('ms')[0]);
+      counter.inc({ method: req.method, status: res.statusCode, url: url });
     });
 
     responseTime()(req, res, next);
