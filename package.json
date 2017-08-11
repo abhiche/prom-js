@@ -1,6 +1,6 @@
 {
   "name": "prom-js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A prom-client wrapper to simplify prometheus setup on micro services",
   "main": "index.js",
   "scripts": {
